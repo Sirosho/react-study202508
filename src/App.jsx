@@ -19,14 +19,22 @@ const App = () => {
     // class라고 쓰면 예약어로 인식함, className이라고 적어줘야 태그 클래스로 지정
 
 
-
     // for도 예약어로 인식, htmlFor로 적어줘야함
     // return 되는 데이터는 하나의 태그로 감싸져야함. 밑에처럼 태그구조가 복잡하면 소괄호로 감싸기
     return (
         <>
-           <ExpenseItem/>
-           <ExpenseItem/>
-           <ExpenseItem/>
+            <ExpenseItem title='닭강정'
+                         price={8000}
+                         date={new Date(2025, 7, 13)}
+            />
+            <ExpenseItem title='아이스크림'
+                         price={5000}
+                         date={new Date(2025, 8, 12)}
+            />
+            <ExpenseItem title='이펙티브 자바'
+                         price={30000}
+                         date={new Date(2025, 6, 5)}
+            />
         </>)
         ;
 };
