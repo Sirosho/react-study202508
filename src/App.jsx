@@ -1,4 +1,7 @@
 import React from 'react';
+import Hello from './components/Hello.jsx';
+import Bye from './components/Bye'; // 리액트에서는 확장자 생략가능
+
 /*
     jsx : 리액트에서 사용하는 특수한 js문법, 태그를 그대로 쓰면 알아서 변환
 
@@ -23,16 +26,19 @@ function App() {
     // return 되는 데이터는 하나의 태그로 감싸져야함. 밑에처럼 태그구조가 복잡하면 소괄호로 감싸기
     return (
         <>
-        <header>
-            {$h1}
-            <h2>{text}</h2>
-            <label htmlFor='nameInput'>이름:</label>
-            <input id="nameInput" type="text"/>
-        </header>
-        <main>
-            이곳은 메인 컨텐츠입니다.
-        </main>
-    </>)
+            <header>
+                {$h1}
+                <h2>{text}</h2>
+                <label htmlFor='nameInput'>이름:</label>
+                <input id="nameInput" type="text"/>
+            </header>
+            <main>
+                이곳은 메인 컨텐츠입니다.
+            </main>
+            <Hello/>
+            <Bye/>
+            <Hello/>
+        </>)
         ;
 }
 
