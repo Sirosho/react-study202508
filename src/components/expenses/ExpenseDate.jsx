@@ -6,7 +6,7 @@ const ExpenseDate = ({expenseDate}) => {
     // console.log(expenseDate)
 
 
-    let month = expenseDate.toLocaleString('en-US',{month:'long'}).slice(0,3);
+    let month = expenseDate.toLocaleString('en-US', {month:'long'}).slice(0,3);
     return (
         <div className='expense-date'>
             <div className='expense-date__month'>{month}</div>
