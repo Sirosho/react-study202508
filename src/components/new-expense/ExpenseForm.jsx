@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import './ExpenseForm.css';
 
-const ExpenseForm = ({onAdd}) => {
+const ExpenseForm = ({onAdd,onCancel}) => {
 
     // console.log('렌더링 시작!');
 
@@ -38,8 +38,10 @@ const ExpenseForm = ({onAdd}) => {
 
 
         // 상위컴포넌트(App)이 내려준 onAddExpense라는 함수를 onAdd로 내려받음
-        onAdd(userInput);
-
+        onAdd({
+            ...userInput,
+            date: new Date(userInput.date)
+        });
 
 
         // 입력창 초기화
@@ -64,12 +66,12 @@ const ExpenseForm = ({onAdd}) => {
 
         setUserInput(prevUserInput => ({
             ...prevUserInput,
-                title: e.target.value
+            title: e.target.value
         }));
     };
 
 
-    const priceChangeHandler = e => setUserInput(prev =>({
+    const priceChangeHandler = e => setUserInput(prev => ({
         ...prev,
         price: +e.target.value
     }));
@@ -114,6 +116,7 @@ const ExpenseForm = ({onAdd}) => {
                 </div>
             </div>
             <div className="new-expense__actions">
+                <button type="button" className = "cancel-btn" onClick={onCancel} >Cancel</button>
                 <button type="submit">Add Expense</button>
             </div>
         </form>
