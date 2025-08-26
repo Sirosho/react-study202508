@@ -5,7 +5,10 @@ const Counter = () => {
     let [count, setCount] = useState(10);
 
 
-    const increaseHandler = () => setCount(count + 1);
+    const increaseHandler = () => {
+        // 이렇게 쓰면 동기식으로 작동함
+        setCount((prev)=>prev + 1);
+    }
     const decreaseHandler = () => setCount(count - 1);
 
 
