@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import './CheckBoxStyle.css';
 
 const CheckBoxStyle = () => {
@@ -10,16 +10,14 @@ const CheckBoxStyle = () => {
     */
 
 
+    const [isChecked, setIsChecked] = useState('checked');
 
-       const [isChecked, setIsChecked] = useState('checked');
-
-       const onClick = () => {
-       if(isChecked==='checked') {
-           setIsChecked('unchecked')
-       }
-       else if(isChecked==='unchecked') {
-           setIsChecked('checked');
-       }
+    const onClick = () => {
+        if (isChecked === 'checked') {
+            setIsChecked('unchecked')
+        } else if (isChecked === 'unchecked') {
+            setIsChecked('checked');
+        }
 
     };
 
@@ -30,7 +28,7 @@ const CheckBoxStyle = () => {
                 id='styled-checkbox'
                 onClick={onClick}
             />
-            <label className={isChecked } htmlFor='styled-checkbox'>Check me!</label>
+            <label className={isChecked} htmlFor='styled-checkbox'>Check me!</label>
         </div>
     );
 };

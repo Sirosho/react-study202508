@@ -1,18 +1,23 @@
-
 import React, {useState} from 'react';
 import './ExpenseForm.css';
 
-
 const ExpenseForm = () => {
 
+    // console.log('렌더링 시작!');
+
     // 입력값을 상태관리
-    const [title, setTitle] = useState('');
-    const [price, setPrice] = useState(0);
-    const [date, setDate] = useState(null);
+    // const [title, setTitle] = useState('');
+    // const [price, setPrice] = useState(0);
+    // const [date, setDate] = useState(null);
 
+    const initUserInputState = {
+        title: '',
+        price: 0,
+        date: null
+    };
 
-
-
+    // 객체로 상태값을 한번에 관리
+    const [userInput, setUserInput] = useState(initUserInputState);
 
     // 오늘 날짜를 YYYY-MM-DD 형식으로 가져오는 함수
     const getTodayDate = () => {
@@ -23,47 +28,90 @@ const ExpenseForm = () => {
         return `${year}-${month}-${day}`;
     };
 
-
+    // form 제출 이벤트
     const handleSubmit = e => {
         e.preventDefault();
         // console.log('form이 제출됨!');
+        // const payload = { title, price, date };
+
+        console.log('userInput: ', userInput);
+
+        // 입력창 초기화
+        /*
+          input태그에다가 값을 입력하면 -> 상태변수에 저장됨  (단방향)
+          상태변수의 값을 바꾸면 -> input이 갱신된다?  (X)    (양방향)
+         */
+        // setTitle('');
+        // setPrice(0);
+        // setDate(null);
+
+        setUserInput(initUserInputState);
+
+    };
 
 
+    // 제목 입력 이벤트
+    const titleChangeHandler = e => {
+        /*
+          리액트는 기존객체에서 프로퍼티 값만을 바꾸면 상태변경을 감지하지 못함
+         */
+        const newUserInput = {
+            title: e.target.value,
+            price: userInput.price,
+            date: userInput.date
+        };
+        setUserInput(newUserInput);
+    };
 
-        const payload={title, price, date};
 
-        console.log(payload);
+    const priceChangeHandler = e => setUserInput({
+        price: +e.target.value,
+        title: userInput.title,
+        date: userInput.date
+    });
 
-}
+
+    const dateChangeHandler = e => setUserInput({
+        date: e.target.value,
+        title: userInput.title,
+        price: userInput.price
+    });
+
 
     return (
         <form onSubmit={handleSubmit}>
-            <div className='new-expense__controls'>
-                <div className='new-expense__control'>
+            <div className="new-expense__controls">
+                <div className="new-expense__control">
                     <label>Title</label>
-                    <input type='text' onInput={e => setTitle(e.target.value)} />
-                </div>
-                <div className='new-expense__control'>
-                    <label>Price</label>
                     <input
-                        type='number'
-                        min='100'
-                        step='100'
-                        onInput={e => setPrice(+e.target.value)}
+                        type="text"
+                        onInput={titleChangeHandler}
+                        value={userInput.title}
                     />
                 </div>
-                <div className='new-expense__control'>
+                <div className="new-expense__control">
+                    <label>Price</label>
+                    <input
+                        type="number"
+                        min="100"
+                        step="100"
+                        onInput={priceChangeHandler}
+                        value={userInput.price || ''}
+                    />
+                </div>
+                <div className="new-expense__control">
                     <label>Date</label>
                     <input
-                        type='date'
-                        min='2019-01-01'
+                        type="date"
+                        min="2019-01-01"
                         max={getTodayDate()}
-                        onInput={e => setDate(e.target.value)}
+                        onInput={dateChangeHandler}
+                        value={userInput.date ?? ''}
                     />
                 </div>
             </div>
-            <div className='new-expense__actions'>
-                <button type='submit'>Add Expense</button>
+            <div className="new-expense__actions">
+                <button type="submit">Add Expense</button>
             </div>
         </form>
     );
