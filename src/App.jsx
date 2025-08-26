@@ -13,12 +13,12 @@ const App = () => {
         {
             title: '닭강정',
             price: 8000,
-            date: new Date(2025, 7, 13)
+            date: new Date(2022, 7, 13)
         },
         {
             title: '호두정과',
             price: 50000,
-            date: new Date(2025, 8, 21)
+            date: new Date(2023, 8, 21)
         },
         {
             title: '이펙티브 자바',
