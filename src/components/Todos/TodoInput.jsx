@@ -1,5 +1,5 @@
-import React from 'react';
-import { MdAdd } from 'react-icons/md';
+import React, {useState} from 'react';
+import {MdAdd} from 'react-icons/md';
 
 import styles from './scss/TodoInput.module.scss';
 
@@ -12,20 +12,25 @@ const TodoInput = () => {
         open: openStyle,
     } = styles;
 
+
+    const [isOpen, setIsOpen] = useState(false);
+
     return (
         <>
-            <div className={wrapper}>
+            {isOpen ? <div className={wrapper}>
                 <form className={insertForm}>
                     <input
                         type='text'
                         placeholder='할 일을 입력 후, 엔터를 누르세요!'
                     />
                 </form>
-            </div>
+            </div> : null}
+
             <button
-                className={`${insertBtn}`}
+                className={!isOpen ? `${insertBtn}` : `${insertBtn} ${openStyle}`}
+                onClick={() => setIsOpen(!isOpen)}
             >
-                <MdAdd />
+                <MdAdd/>
             </button>
         </>
     );
